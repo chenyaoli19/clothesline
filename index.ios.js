@@ -1,31 +1,30 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
+var MOCKED_CLOTHES_DATA = [
+  {color: 'yellow', category: 'top', photo: {thumbnail: 'http://dolcifollie.co.uk/media/catalog/product/cache/1/image/1300x1840/9df78eab33525d08d6e5fb8d27136e95/m/n/mn11a8yw_made_by_niki_yellow_trapeze_peplum_top_f.jpg'}},
+];
 
 import React, { Component } from 'react';
 import {
   AppRegistry,
   StyleSheet,
+  Image,
+  ListView,
   Text,
   View
 } from 'react-native';
 
 class Clothesline extends Component {
   render() {
+    var clothes = MOCKED_CLOTHES_DATA[0];
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
+        <Image
+         source={{uri:clothes.photo.thumbnail}}
+         style={styles.thumbnail}
+        />
+        <View style={styles.rightContainer}>
+          <Text style={styles.color}>{clothes.color}</Text>
+          <Text style={styles.category}>{clothes.category}</Text>
+        </View>
       </View>
     );
   }
@@ -34,19 +33,25 @@ class Clothesline extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    flexDirection:'row',
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
+  rightContainer:{
+    flex:1,
   },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
+  color:{
+    fontSize:20,
+    marginBottom:8,
+    textAlign:'center',
+  },
+  category:{
+    textAlign:'center',
+  },
+  thumbnail:{
+    width: 100,
+    height: 150,
   },
 });
 
